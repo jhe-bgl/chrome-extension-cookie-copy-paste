@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Copy Paste Cookie Extension",
+  "version": "1.0",
+  "description": "Copies and paste cookie value from an website to another.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "cookies",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "host_permissions": [
+  "*://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
