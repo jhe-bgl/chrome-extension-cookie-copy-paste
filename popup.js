@@ -28,7 +28,7 @@ function getTextFromClipboard() {
 document.getElementById('copy-button').addEventListener('click', async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   try {
-    let cookie = await getSessionIdCookie(tab.url);    
+    let cookie = await getSessionIdCookie(tab.url);
     if (cookie) {
       copyTextToClipboard(cookie.value )
       //chrome.runtime.sendMessage({ action: 'copyData', data: cookie.value });
@@ -57,10 +57,11 @@ async function getSessionIdCookie(url) {
 
 function setCookieValue(url, name, cookieValue){
   chrome.cookies.set(
-    { url: url, 
+    { url: url,
       name: name,
-      value: cookieValue, 
-      expirationDate: (Date.now()/1000) + (3600 * 24 *7)
+      value: cookieValue,
+      expirationDate: (Date.now()/1000) + (3600 * 24 *7),
+      path: '/'
     }
     , (cookie) => {
       if (chrome.runtime.lastError) {
@@ -76,7 +77,7 @@ async function setSessionIdCookie(url, cookieValue) {
   return new Promise((resolve, reject) => {
 
     setCookieValue(url, 'JSESSIONID', cookieValue)
-    setCookieValue(url, 'sid', cookieValue)      
+    setCookieValue(url, 'sid', cookieValue)
   })
 }
 
