@@ -25,5 +25,10 @@
   },
   "icons": {
     "48": "icon-48.png"
+  },
+  "browser_specific_settings": {
+  "gecko": {
+    "id": "jhe@bglcorp.com.au"
   }
+}
 }
