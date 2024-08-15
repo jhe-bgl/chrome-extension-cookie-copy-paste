@@ -1,9 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import './index.css'
-import { Box, Button, Container, Divider, FormLabel, Grid, IconButton, Switch, TextField, Tooltip, Typography } from '@mui/material'
-import InfoIcon from '@mui/icons-material/Info';
+import {  Button, FormLabel, Switch, TextField, Tooltip} from '@mui/material'
+import CookieIcon from '@mui/icons-material/Cookie';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom'
 import { Setting } from '../../dto/setting'
+import { readSettings, writeSettings } from '../../services/settingService';
+import buttonSx, { buttonOutlineSx } from '../../Styles/button';
+import { formLabelSx } from '../../Styles/formLabel';
 
 function Settings(props: {}) {
 
@@ -31,61 +38,71 @@ function Settings(props: {}) {
             cookieNames: cookieNames
         }
 
-        chrome.storage.local.set({ "setting": JSON.stringify(setting) }, function(){
-            backToMain()
-        });
+        writeSettings(setting, ()=> backToMain())
+    }
+
+    const handleCancel = ()=>{
+        backToMain()
     }
 
     useEffect(() => {
-        chrome.storage.local.get(["setting"], function(items){
-
-            if(items['setting']){
-                const savedSettings = JSON.parse(items['setting']) as Setting
-                setAllCookies(savedSettings.allCookies)
-                setCookieNames(savedSettings.cookieNames)
-            }
+        readSettings((savedSettings: Setting)=>{
+            setAllCookies(savedSettings.allCookies)
+            setCookieNames(savedSettings.cookieNames)
         })
     }, [])
 
 
     return (
         <div className='align_left'>
-            <Container>
-                    <Typography variant="h6" component="h2">
-                        Settings
-                    </Typography>
-
-                    <Divider></Divider>
-
-                    <Box>
-                        
+            
+            <Card sx={{ maxWidth: 345, boxShadow: 0 }}>
+              <CardHeader
+                avatar={
+                  <Avatar sx={{ bgcolor: '#e8c374' }} aria-label="recipe">
+                    <CookieIcon/>
+                  </Avatar>
+                }
+                title="Settings"
+                subheader=""
+              >
+              </CardHeader>
+              <CardContent>
+                
+            
                             <div>
-                                    <FormLabel>All Cookies</FormLabel>   <span className='settings_item'><Switch checked={allCookies} onChange={handleAllCookiesChange}/></span>
+                                    <FormLabel sx={formLabelSx}>All Cookies</FormLabel>   <span className='settings_item'><Switch checked={allCookies} onChange={handleAllCookiesChange}/></span>
                             </div>
                             {!allCookies && 
-                                <div>
-                                        <FormLabel>Cookie name</FormLabel>
+                                <div className='element_row'>
+                                        <FormLabel sx={formLabelSx}>Cookie names</FormLabel>
                                         <span className='settings_item'>
+                                            <Tooltip title="Please enter cookie names you want to copy. Separate by comma if multiple." placement="top">
                                             <TextField id="outlined-basic" variant="outlined" size="small" hiddenLabel
+                                             sx={{
+                                                '.MuiInputBase-input': { fontSize: '0.7rem' },
+                                                width: 220
+                                             }}
                                              value = {cookieNames}
                                              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                                 setCookieNames(event.target.value)
                                               }}
                                             />
+                                            </Tooltip>            
                                         </span>
-                                        <Tooltip title="Please enter cookie names you want to copy. Separate by comma if multiple.">
-                                            <IconButton>
-                                                <InfoIcon />
-                                            </IconButton>
-                                        </Tooltip>
+                                                                  
                                 </div>
                             }
-                            <div className='end-container'>
-                                    <Button variant="contained" size="small" onClick={save}>Save</Button>
+                            <div className='settings_item element_row end-container'>
+                                    <Button variant="contained" size="small" sx={buttonOutlineSx} onClick={handleCancel}>Cancel</Button>
+                                    <span className='button_gap'>
+                                        <Button variant="contained" size="small" sx={buttonSx} onClick={save}>Save</Button>
+                                    </span>
                             </div>
-                        
-                    </Box>
-            </Container>
+                 
+               
+              </CardContent>
+            </Card> 
         </div>
     )
 }
