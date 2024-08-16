@@ -85,13 +85,13 @@ function Main(props: {}) {
                   <Container className='element_row'>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
-                        <Tooltip title="Copy the current tab's cookies to the clipboard">
+                        <Tooltip title="Copy the current tab's cookies to the clipboard" placement="top-start">
                           <Button variant="contained" size="small" sx={buttonSx} onClick={handleCopyCookie}>Copy</Button>
                         </Tooltip>
                       </Grid>
                       
                       <Grid item xs={6}>
-                        <Tooltip title="Paste cookie data from the clipboard to the current tab">
+                        <Tooltip title="Paste cookie data from the clipboard to the current tab" placement="top-start">
                           <Button variant="contained" size="small" sx={buttonSx} onClick={handlePasteCookie}>Paste</Button>
                         </Tooltip>
                       </Grid>

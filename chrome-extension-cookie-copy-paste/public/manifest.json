@@ -1,7 +1,7 @@
 {
   "name": "Copy Paste Cookie Extension",
   "description": "Copy / Paste cookie values to / from clipboard",
-  "version": "1.0",
+  "version": "1.0.1",
   "permissions": [
     "activeTab",
     "storage",
