@@ -1,0 +1,26 @@
+{
+  "name": "Copy Paste Cookie Extension",
+  "description": "Copy / Paste cookie values to / from clipboard",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "cookies",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "manifest_version": 3,
+  "action": {
+      "default_popup": "index.html",
+      "default_title": "Copy Paste Cookie Extension Popup",
+      "default_icon": {
+        "48": "icon-48.png"
+      }
+  },
+  "icons": {
+    "48": "icon-48.png"
+  }
+}
