@@ -106,24 +106,38 @@ export const copyCookie = async (setting : Setting) : Promise<number> =>{
   })
 }
 
-const setCookieValue = (url: string, name: string, cookieValue: string) => {
-  chrome.cookies.set(
-    { url: url,
-      name: name,
-      value: cookieValue,
-      expirationDate: (Date.now()/1000) + (3600 * 24 *7),
-      path: '/'
-    }
-    , (cookie) => {
-      if (chrome.runtime.lastError) {
-        console.error('Failed to set cookie:', chrome.runtime.lastError);
-        alert('Failed to set cookie');
-      } else {
-        console.log('Cookie set successfully:', cookie);
+const setCookieValue = (url: string, name: string, cookieValue: string): Promise<string> => {
+  
+  return new Promise((resolve, reject) =>{
+
+    chrome.cookies.set(
+      { url: url,
+        name: name,
+        value: cookieValue,
+        expirationDate: (Date.now()/1000) + (3600 * 24 *7),
+        path: '/'
       }
-    })
+      , (cookie) => {
+        if (chrome.runtime.lastError) {
+          reject('Failed to set cookie:' + chrome.runtime.lastError)
+        } else {
+          resolve('Cookie set successfully')
+        }
+      })
+  })
 }
 
+const handlePromise = (promise: Promise<any>) =>
+  promise.then(result => ({ status: 'fulfilled', result }))
+         .catch(error => ({ status: 'rejected', error }));
+
+
+const setCookieValues = async (tabUrl :string, cookieItems: CookieItem[]) : Promise<number> =>{
+  const allPromisesResults = cookieItems.map(x=> setCookieValue(tabUrl, x.name, x.value)).map(x=>handlePromise(x))
+  const allResults = await Promise.all(allPromisesResults)
+  
+  return allResults.filter(result => result.status === 'fulfilled').length
+}
 
 export const pasteCookie = async (): Promise<number> =>{
 
@@ -136,6 +150,7 @@ export const pasteCookie = async (): Promise<number> =>{
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   return new Promise((resolve, reject) => {
+
     if(tab.url){
       const text = getTextFromClipboard()
       let obj;
@@ -150,11 +165,13 @@ export const pasteCookie = async (): Promise<number> =>{
       if(cookieItems.length === 0 ){
         reject("Invalid copied cookie. Please copy again.")
       }
-      
-      cookieItems.forEach(x=> setCookieValue(tab.url!, x.name, x.value))
-      resolve(cookieItems.length)
+
+      setCookieValues(tab.url!, cookieItems).then(x=> resolve(x))
     }
-    reject("Not on any tab")
+    else{
+      reject("Not on any tab")
+    }
+    
   })
  
 }

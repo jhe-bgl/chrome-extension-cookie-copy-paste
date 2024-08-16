@@ -4,7 +4,6 @@
   "version": "1.0",
   "permissions": [
     "activeTab",
-    "scripting",
     "storage",
     "cookies",
     "clipboardWrite",
@@ -12,12 +11,6 @@
   ],
   "host_permissions": [
     "*://*/*"
-  ],
-  "content_scripts": [
-   {
-       "matches": ["http://*/*", "https://*/*"],
-       "js": ["./static/js/content.js"]
-   }
   ],
   "manifest_version": 3,
   "action": {

@@ -77,7 +77,7 @@ function Settings(props: {}) {
                                 <div className='element_row'>
                                         <FormLabel sx={formLabelSx}>Cookie names</FormLabel>
                                         <span className='settings_item'>
-                                            <Tooltip title="Please enter cookie names you want to copy. Separate by comma if multiple." placement="top">
+                                            <Tooltip title="Please enter the cookie names you want to copy. Separate multiple names with a comma(,)." placement="top">
                                             <TextField id="outlined-basic" variant="outlined" size="small" hiddenLabel
                                              sx={{
                                                 '.MuiInputBase-input': { fontSize: '0.7rem' },
