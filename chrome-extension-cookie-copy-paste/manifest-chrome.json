@@ -22,10 +22,5 @@
   },
   "icons": {
     "48": "icon-48.png"
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "jing6h@gmail.com"
-    }
   }
 }
