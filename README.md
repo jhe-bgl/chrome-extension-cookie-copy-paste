@@ -15,7 +15,7 @@ For chrome install from source
 For firefox 
 
 Since install from source will lose the plugnin with every restart of firefox, it's recommend to directly install from 
-https://addons.mozilla.org/en-US/android/addon/copy-paste-cookie-extension/
+https://addons.mozilla.org/en-US/firefox/addon/copy-paste-cookie-extension/
 
 
 
