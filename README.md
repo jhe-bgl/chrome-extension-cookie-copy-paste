@@ -1,17 +1,22 @@
 Copy and paste cookie values from a website to another.
 Mainly used for frontend development when localhost trying to interact with backend through proxy middleware.
 
-Currently it only copy JSESSIONID from source website and create JSESSIONID AND SID in the target website. Modify line 47 and 78 in popup.js to create more or difference cookie values.
+No specific node or npm version require. The latste version of node and yarn was tested and worked
 
 How to install:
 
-Temporary install from source (It will be auto removed when restart firefox):
-1. Download the source
-2. Open Firefox and go to about:debugging.
-3. Click on "This Firefox" (or "This Nightly" if you're using Firefox Nightly).
-4. Click "Load Temporary Add-on".
-5. Select your extension directory.
+For chrome install from source
+
+1. download the source
+2. run yarn install / yarn build
+3. Visit chrome://extensions/ and turn on "Developer mode"
+4. Click "Load unpacked" button and navivigate to the 'build' folder.
+
+For firefox 
+
+Since install from source will lost the plugnin with every restart of firefox, it's recommand to directly install from 
+https://addons.mozilla.org/en-US/android/addon/copy-paste-cookie-extension/
 
 
-Install from signed file:
-install signed_install_file.xpi
+
+
