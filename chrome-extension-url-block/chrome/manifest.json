@@ -1,0 +1,25 @@
+{
+  "name": "URL Block Extension",
+  "description": "Block Urls configured in the extension",
+  "version": "1.0",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "444",
+        "enabled": true,
+        "path": "blocking.json"
+      }
+    ]
+  },
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "manifest_version": 3,
+  "icons": {
+    "48": "icon-48.png"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "URL Block Extension",
+  "description": "Block Urls configured in the extension",
+  "version": "1.0.1",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "manifest_version": 2,
+  "icons": {
+    "48": "icon-48.png"
+  }
+}

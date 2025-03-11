@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*/s/js/pendo/*",
+      "resourceTypes": [
+        "main_frame", "sub_frame", "stylesheet", "script", "image", "font", 
+        "object", "xmlhttprequest", "ping", "csp_report", "media", 
+        "websocket", "webtransport", "webbundle", "other"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*/service/notification/*",
+      "resourceTypes": [
+        "main_frame", "sub_frame", "stylesheet", "script", "image", "font", 
+        "object", "xmlhttprequest", "ping", "csp_report", "media", 
+        "websocket", "webtransport", "webbundle", "other"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "https://www.googletagmanager.com/*",
+      "resourceTypes": [
+        "main_frame", "sub_frame", "stylesheet", "script", "image", "font", 
+        "object", "xmlhttprequest", "ping", "csp_report", "media", 
+        "websocket", "webtransport", "webbundle", "other"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "https://www.google-analytics.com/*",
+      "resourceTypes": [
+        "main_frame", "sub_frame", "stylesheet", "script", "image", "font", 
+        "object", "xmlhttprequest", "ping", "csp_report", "media", 
+        "websocket", "webtransport", "webbundle", "other"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "https://analytics.google.com/*",
+      "resourceTypes": [
+        "main_frame", "sub_frame", "stylesheet", "script", "image", "font", 
+        "object", "xmlhttprequest", "ping", "csp_report", "media", 
+        "websocket", "webtransport", "webbundle", "other"
+      ]
+    }
+  }
+]
