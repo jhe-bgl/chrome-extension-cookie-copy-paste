@@ -17,6 +17,10 @@ For firefox
 Since install from source will lose the plugnin with every restart of firefox, it's recommend to directly install from 
 https://addons.mozilla.org/en-US/firefox/addon/copy-paste-cookie-extension/
 
+For chrome
+You may install from
+https://chromewebstore.google.com/detail/copy-paste-cookie-extensi/bpoafaameafofkfbgjeboikbafkggibg?hl=en-GB
+
 
 
 
